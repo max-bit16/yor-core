@@ -1,0 +1,343 @@
+PROMPT LOVABLE — RENAUD VOSS AVOCATS (VERSION ÉLÉGANCE)
+Généré le 03/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Crée un site vitrine multipage haut de gamme pour Renaud Voss
+Avocats, cabinet spécialisé en droit des affaires à Paris 8e.
+Cible : dirigeants de PME, DG et fondateurs de scale-ups.
+
+CONTRAINTE ABSOLUE : aucune image IA, aucun placeholder
+d'image, aucun stock photo. Le design repose entièrement sur
+la typographie, les blocs de couleur et les icônes SVG.
+L'esthétique doit évoquer une revue juridique de prestige —
+pas un site corporate générique.
+
+
+━━ STACK TECHNIQUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- React + Tailwind CSS
+- Icônes : bibliothèque Lucide-React exclusivement
+- Polices Google Fonts :
+    · Titre      → "Playfair Display" (serif, élégant)
+    · Corps      → "DM Sans" (sans-serif, lisible)
+- Aucune image (ni <img>, ni background-image URL externe)
+- Aucune animation lourde — transitions CSS légères uniquement
+- Routing multipage : React Router avec 5 routes distinctes
+
+
+━━ STRUCTURE HTML SÉMANTIQUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Pages :
+  /             → Accueil
+  /expertises   → Nos expertises
+  /cabinet      → Le cabinet
+  /equipe       → L'équipe
+  /contact      → Contact & rendez-vous
+
+Balise H1 unique (page Accueil) :
+"Avocats en droit des affaires à Paris — Renaud Voss Avocats"
+
+Une balise H2 par section sur chaque page.
+Chaque icône Lucide-React avec un aria-label descriptif.
+
+
+━━ DESIGN SYSTEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Palette claire et éditoriale (différente d'un site sombre) :
+  · Fond principal   → #FAFAF7  (blanc ivoire chaud)
+  · Fond secondaire  → #F0EDE6  (crème soutenu)
+  · Texte principal  → #1A1A1A
+  · Accent           → #2C4A3E  (vert sauge profond)
+  · Accent or        → #8B7355  (or brun, numéros et labels)
+  · Séparateurs      → #E0DBD3  (beige très clair)
+
+Typographie :
+  · H1         → Playfair Display, 96px, italic, #1A1A1A
+  · H2         → Playfair Display, 56px, italic, #1A1A1A
+  · Labels     → DM Sans, 11px, uppercase, tracking 0.2em, #8B7355
+  · Corps      → DM Sans, 16px, line-height 1.8, #1A1A1A
+  · Chiffres   → Playfair Display, 80–100px, #2C4A3E
+
+Éléments signature (présents sur toutes les pages) :
+  · Ligne verticale fine 1px #2C4A3E, positionnée à 48px
+    du bord gauche, court sur toute la hauteur de la page
+  · Numérotation éditoriale avant chaque section :
+    "01 — EXPERTISES", "02 — CABINET", etc.
+    DM Sans 11px uppercase #8B7355
+  · Séparateurs horizontaux en tirets fins #E0DBD3
+    entre chaque section (jamais de blocs pleins lourds)
+
+
+━━ NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Barre fixe, fond #FAFAF7, bordure bottom 1px #E0DBD3.
+  Logo "Renaud Voss" → Playfair Display italic #1A1A1A
+  Liens → DM Sans 12px uppercase tracking-wide #1A1A1A
+  CTA "Prendre rendez-vous" → contour 1px #2C4A3E, texte vert
+  Hover CTA : fond #2C4A3E, texte #FAFAF7
+
+
+━━ PAGE ACCUEIL — / ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+── HERO (plein écran, fond #FAFAF7) ───────────────────────
+
+  Mise en page split : 60% gauche / 40% droite
+
+  Côté gauche :
+    Label éditorial : "00 — PARIS, 8E ARRONDISSEMENT"
+    (DM Sans 11px uppercase #8B7355)
+
+    Titre H1, Playfair Display italic, 3 lignes :
+    "Le droit"        → 96px #1A1A1A
+    "des affaires."   → 96px #1A1A1A
+    "Autrement."      → 72px #2C4A3E
+
+    Sous-titre DM Sans light 18px #1A1A1A opacity-60 :
+    "Cabinet boutique. Douze avocats.
+     Un associé pour chaque dirigeant."
+
+    Deux CTA horizontaux :
+    · "Découvrir le cabinet"  → lien texte + flèche →, #2C4A3E
+    · "Prendre rendez-vous"   → bouton contour 1px #2C4A3E
+
+  Côté droit — bloc fond #F0EDE6, pleine hauteur :
+    3 stats empilées, séparées par lignes fines #E0DBD3 :
+    ┌──────────────────────────────────┐
+    │  "12"    Playfair 80px #2C4A3E  │
+    │  AVOCATS  DM Sans 11px uppercase │
+    ├──────────────────────────────────┤
+    │  "2011"  Playfair 80px #2C4A3E  │
+    │  FONDATION                       │
+    ├──────────────────────────────────┤
+    │  "3"     Playfair 80px #2C4A3E  │
+    │  LANGUES  (FR · EN · DE)         │
+    └──────────────────────────────────┘
+
+
+── BENTO GRID — EXPERTISES (fond #F0EDE6) ─────────────────
+
+  Label : "01 — EXPERTISES"
+  H2 Playfair italic : "Ce que nous défendons."
+
+  Grille asymétrique, 6 blocs, bordures 1px #E0DBD3 :
+
+  Bloc 1 — Grand (col-span-2), fond #FAFAF7
+    Icône Lucide : <Briefcase /> (aria-label="Droit des sociétés")
+    Label uppercase : "DROIT DES SOCIÉTÉS & M&A"
+    Texte : "Accompagnement des dirigeants dans toutes
+    les opérations structurantes : cession, fusion,
+    pacte d'associés, levée de fonds."
+
+  Bloc 2 — Moyen, fond #2C4A3E, texte #FAFAF7
+    Icône Lucide : <Scale /> (aria-label="Contentieux commercial")
+    Label : "CONTENTIEUX COMMERCIAL"
+    Texte : "Défense de vos intérêts devant les tribunaux.
+    Procédures rapides et stratégie judiciaire sur mesure."
+
+  Bloc 3 — Petit, fond #F0EDE6, bordure #E0DBD3
+    Icône Lucide : <FileText /> (aria-label="Contrats")
+    Chiffre géant Playfair #2C4A3E : "100%"
+    Texte : "des missions suivies par un associé"
+
+  Bloc 4 — Petit, fond #FAFAF7
+    Icône Lucide : <Users /> (aria-label="Droit du travail")
+    Label : "DROIT DU TRAVAIL DIRIGEANTS"
+    Texte court : "Ruptures, clauses, litiges."
+
+  Bloc 5 — Moyen, fond #FAFAF7
+    Icône Lucide : <Shield /> (aria-label="Structuration patrimoniale")
+    Label : "STRUCTURATION PATRIMONIALE"
+    Texte : "Optimisation et protection du patrimoine
+    professionnel et personnel des dirigeants."
+
+  Bloc 6 — Petit, fond #8B7355, texte #FAFAF7
+    Icône Lucide : <ArrowRight /> (aria-label="Toutes nos expertises")
+    Texte : "Voir toutes nos expertises →"
+    Lien vers /expertises
+
+
+── SECTION PHILOSOPHIE (fond #FAFAF7) ─────────────────────
+
+  Label : "02 — PHILOSOPHIE"
+  H2 Playfair italic 72px, 2 lignes :
+  "Un cabinet."
+  "Pas une usine."
+
+  Texte DM Sans 18px max-w-prose opacity-80 :
+  "Chez Renaud Voss, chaque dirigeant parle directement
+  à un associé. Pas à un collaborateur junior. Cette promesse
+  structure tout — nos honoraires, notre organisation,
+  notre façon de décrocher le téléphone."
+
+  Séparateur fin puis 3 colonnes valeurs :
+  · <Clock />    "Réactivité"      — réponse associé sous 24h
+  · <Lock />     "Confidentialité" — discrétion absolue
+  · <Handshake /> "Engagement"    — forfaits clairs, pas de surprise
+
+
+── SECTION CONFIANCE (fond #F0EDE6) ───────────────────────
+
+  Label : "03 — SECTEURS"
+  H2 Playfair italic : "Ils nous font confiance."
+
+  Secteurs en ligne, DM Sans 12px uppercase tracking-widest
+  couleur #8B7355, séparés par · :
+  TECH · IMMOBILIER · LUXE · INDUSTRIE · SANTÉ · RETAIL
+
+
+── FAQ (fond #FAFAF7) ─────────────────────────────────────
+
+  Label : "04 — FAQ"
+  H2 Playfair italic : "Questions fréquentes."
+
+  Accordéon sobre, séparateurs 1px #E0DBD3,
+  icône <ChevronDown /> #2C4A3E, transition 200ms ease :
+
+  Q1 : "Intervenez-vous pour les PME ?"
+  R  : "Nous travaillons principalement avec des dirigeants
+       de PME, ETI et scale-ups entre 10 et 500 salariés.
+       Notre structure boutique nous permet une réactivité
+       impossible dans un grand cabinet."
+
+  Q2 : "Quels sont vos délais de réponse ?"
+  R  : "Tout nouveau dossier reçoit un retour d'un associé
+       sous 24h ouvrées. Pour les urgences, nous intervenons
+       le jour même."
+
+  Q3 : "Pratiquez-vous des honoraires forfaitaires ?"
+  R  : "Oui. Nous proposons systématiquement un devis
+       forfaitaire pour les opérations structurées.
+       La facturation horaire reste disponible pour
+       les missions ouvertes."
+
+  Q4 : "Intervenez-vous à l'international ?"
+  R  : "Nous conseillons en français, anglais et allemand.
+       Pour les opérations multi-juridictions, nous
+       mobilisons notre réseau de partenaires en Europe
+       et aux États-Unis."
+
+
+── CONTACT RAPIDE (fond #F0EDE6) ──────────────────────────
+
+  Label : "05 — CONTACT"
+  H2 Playfair italic 80px :
+  "Parlons-en."
+
+  Split : formulaire gauche / infos droite
+
+  Formulaire 3 champs, fond #FAFAF7, bordure 1px #E0DBD3 :
+  · Votre nom
+  · Votre email
+  · Votre message
+  Bouton "Envoyer" → fond #2C4A3E, texte #FAFAF7
+
+  Infos droite :
+  · <MapPin /> → 12 rue du Faubourg Saint-Honoré, Paris 75008
+  · <Phone />  → +33 1 XX XX XX XX
+  · <Mail />   → contact@renaudvoss.fr
+
+
+── FOOTER ─────────────────────────────────────────────────
+
+  Fond #1A1A1A, texte #F0EDE6, très sobre.
+  "© 2026 Renaud Voss Avocats · Paris"
+  Mentions légales · Politique de confidentialité · RGPD
+
+
+━━ PAGES INTÉRIEURES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Chaque page intérieure reprend :
+  · La même navigation fixe
+  · La ligne verticale 1px #2C4A3E à gauche
+  · Un mini-hero avec label éditorial + H2 Playfair italic
+  · Le même footer
+
+── PAGE EXPERTISES — /expertises ──────────────────────────
+
+  Mini-hero fond #F0EDE6 :
+  Label "EXPERTISES · RENAUD VOSS"
+  H2 : "Cinq domaines. Une exigence."
+
+  6 cartes expansibles fond #FAFAF7, bordure 1px #E0DBD3 :
+  Chaque carte : icône Lucide + titre + description 3 lignes
+  + 3 cas typiques au clic (accordéon interne)
+
+── PAGE CABINET — /cabinet ────────────────────────────────
+
+  Mini-hero fond #FAFAF7 :
+  Label "LE CABINET"
+  H2 : "Fondé en 2011. Toujours boutique."
+
+  Bloc histoire : 3 paragraphes DM Sans 16px
+  Ligne de valeurs (3 colonnes) :
+  "Réactivité" · "Confidentialité" · "Engagement"
+
+  Chiffres clés Playfair géant #2C4A3E :
+  "2011" · "12" · "3" · "Paris"
+
+── PAGE ÉQUIPE — /equipe ──────────────────────────────────
+
+  Mini-hero fond #F0EDE6 :
+  Label "L'ÉQUIPE"
+  H2 : "Les associés fondateurs."
+
+  2 cartes associés, fond #FAFAF7, bordure 1px #E0DBD3 :
+
+  Carte 1 — Maître Claire Renaud
+    Icône <User /> (aria-label="Claire Renaud")
+    Spécialité : M&A et droit des sociétés
+    Barreau de Paris depuis 2009
+
+  Carte 2 — Maître Jonas Voss
+    Icône <User /> (aria-label="Jonas Voss")
+    Spécialité : Contentieux commercial et arbitrage
+    Barreau de Paris depuis 2010 · Bilingue DE/FR
+
+  Mention DM Sans italic sous les cartes :
+  "et dix avocats collaborateurs"
+
+── PAGE CONTACT — /contact ────────────────────────────────
+
+  Mini-hero fond #FAFAF7 :
+  Label "CONTACT & RENDEZ-VOUS"
+  H2 : "Un associé vous répond sous 24h."
+
+  Formulaire complet fond #F0EDE6, champs fond #FAFAF7 :
+  Prénom · Nom · Email · Téléphone · Société
+  Objet → select : M&A / Contentieux / Contrats /
+                   Droit du travail / Patrimoine / Autre
+  Message libre
+  Bouton "Envoyer ma demande" → fond #2C4A3E, texte #FAFAF7
+
+  Infos droite + icônes Lucide
+  Mention RGPD discrète DM Sans 11px #8B7355
+
+
+━━ SEO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Accueil :
+  title       → "Renaud Voss Avocats — Droit des affaires à Paris"
+  description → "Cabinet d'avocats parisien spécialisé en droit
+                 des affaires, M&A et contentieux commercial.
+                 Conseil sur mesure pour dirigeants. Paris 8e."
+  og:title    → "Renaud Voss Avocats — Droit des affaires à Paris"
+  og:description → (idem description)
+  og:type     → website
+
+Expertises :
+  title → "Expertises — M&A, Contentieux, Contrats | Renaud Voss"
+
+Cabinet :
+  title → "Le Cabinet — Renaud Voss Avocats Paris"
+
+Équipe :
+  title → "L'Équipe — Maître Renaud & Maître Voss | Paris"
+
+Contact :
+  title → "Contact & Rendez-vous — Renaud Voss Avocats"
+
+og:title + og:description + og:type sur chaque page.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

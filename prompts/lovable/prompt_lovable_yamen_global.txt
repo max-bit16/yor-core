@@ -1,0 +1,572 @@
+PROMPT LOVABLE — YAMEN GLOBAL (site vitrine complet)
+Basé sur la base Mindloop · Design system dark monochrome
+Généré le 05/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Build a dark monochrome landing page for Yamen Global —
+a consulting firm. Use React + Vite + TypeScript +
+Tailwind CSS + shadcn/ui + Framer Motion.
+Fonts: Inter (sans) and Instrument Serif (serif, used for
+italic accent words).
+The entire theme is pure black (#000) background with
+white foreground — the only accent color is a deep violet
+used sparingly. Install framer-motion and hls.js.
+
+
+━━ DESIGN SYSTEM (index.css) ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All CSS variables in HSL (no hsl() wrapper in the
+variable, just the values) :
+
+--background: 0 0% 0%
+--foreground: 0 0% 100%
+--card: 0 0% 5%
+--card-foreground: 0 0% 100%
+--primary: 0 0% 100%
+--primary-foreground: 0 0% 0%
+--secondary: 0 0% 12%
+--secondary-foreground: 0 0% 85%
+--muted: 0 0% 15%
+--muted-foreground: 0 0% 65%
+--accent: 270 45% 44%
+--accent-foreground: 0 0% 100%
+--border: 0 0% 20%
+--input: 0 0% 18%
+--ring: 0 0% 40%
+--hero-subtitle: 210 17% 95%
+
+
+━━ LIQUID GLASS EFFECT (global CSS class .liquid-glass) ━
+
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+━━ ANIMATION PATTERN ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All sections use a reusable fadeUp helper with
+staggered delays :
+
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6, delay, ease: "easeOut" },
+});
+
+
+━━ PAGE STRUCTURE (top to bottom) ━━━━━━━━━━━━━━━━━━━━━━
+
+
+── 1. NAVBAR (fixed, transparent) ───────────────────────
+
+Left :
+  Logo — carré arrondi 28x28px fond blanc/foreground,
+  lettres "Y" bold noir dedans.
+  Texte "Yamen" en font-semibold tracking-tight.
+
+Center :
+  Nav links ["ADN", "Services", "Process", "Équipe",
+  "Contact"] séparés par · dots.
+  Links en text-muted-foreground hover:text-foreground,
+  transition 150ms.
+
+Right :
+  Toggle langue FR / EN — liquid-glass pill rounded-full
+  px-3 py-1, texte 12px uppercase tracking-wider.
+  Bouton CTA "Parlons de votre projet" —
+  bg-foreground text-background rounded-full
+  px-5 py-2 text-sm font-medium,
+  hover: slight box-shadow violet glow
+  (0 0 20px rgba(107,63,160,0.4)).
+
+No background — fully transparent, fixed top-0 z-50,
+padding px-8 md:px-28 py-4.
+Hamburger menu under 768px : overlay fond noir opacity-95
+backdrop-blur-sm, liens centrés DM Sans 18px,
+fermeture au clic sur un lien.
+
+
+── 2. HERO SECTION (full viewport height) ───────────────
+
+Background : autoplaying looping muted MP4 video couvrant
+toute la section.
+Video URL : https://videos.pexels.com/video-files/29756785/12788303_1920_1080_30fps.mp4
+En attendant, utilise un fond dégradé radial :
+background: radial-gradient(ellipse at 40% 40%,
+  rgba(107,63,160,0.25) 0%, transparent 60%),
+  radial-gradient(ellipse at 80% 80%,
+  rgba(107,63,160,0.15) 0%, transparent 55%),
+  hsl(var(--background));
+
+Bottom gradient : h-64 bg-gradient-to-t from-background
+to-transparent pour smooth fade vers le noir.
+
+Content (centré, z-10, pt-28 md:pt-32) :
+
+  Pill tag :
+  "CABINET DE CONSEIL GLOBAL" —
+  liquid-glass rounded-full px-4 py-1.5 text-xs
+  tracking-[3px] uppercase text-muted-foreground mb-8.
+
+  Heading : text-5xl md:text-7xl lg:text-8xl font-medium
+  tracking-[-2px] leading-[1.05] —
+  "Votre bras droit
+   pour chaque défi."
+  "bras droit" en font-serif italic font-normal.
+
+  Subtitle : text-lg md:text-xl max-w-xl mx-auto
+  in hsl(var(--hero-subtitle)) mt-6 mb-10 —
+  "Nous vous écoutons. Nous construisons ensemble.
+   Chaque projet commence par une vraie écoute, parce
+   que comprendre votre réalité, c'est déjà construire
+   la solution."
+
+  Two CTA buttons (flex gap-4 justify-center) :
+  · "Parlons de votre projet" —
+    bg-foreground text-background rounded-full
+    px-8 py-3.5 font-medium,
+    whileHover scale 1.03, whileTap scale 0.97
+  · "Découvrir Yamen" —
+    liquid-glass rounded-full px-8 py-3.5 font-medium
+    text-foreground,
+    whileHover scale 1.03, whileTap scale 0.97
+
+  Scroll indicator : petit chevron animé en bas
+  de section, bounce animation, text-muted-foreground.
+
+
+── 3. ADN SECTION ────────────────────────────────────────
+
+Padding pt-52 md:pt-64, pb-32 md:pb-44.
+id="adn"
+
+Label : "01 — ADN" text-xs tracking-[3px] uppercase
+text-muted-foreground mb-6.
+
+Heading : text-5xl md:text-7xl lg:text-8xl font-medium
+tracking-[-2px] —
+"Pas une agence.
+ Un allié."
+"allié." en font-serif italic.
+
+Sous-heading : text-muted-foreground text-lg max-w-2xl
+mx-auto mb-24 —
+"Yamen n'est pas une agence qui livre des livrables.
+ Nous sommes le partenaire qui reste en salle quand ça
+ devient difficile."
+
+3 value cards (grid md:grid-cols-3 gap-8 mb-20) :
+Chaque card : liquid-glass rounded-2xl p-8,
+icône Lucide en haut (w-8 h-8), titre font-semibold
+text-lg mb-2, description text-muted-foreground text-sm.
+
+  Card 1 — icône <Ear /> :
+  Titre : "On écoute d'abord"
+  Description : "Pas de template, pas de solution
+  préconfigurée. On passe du temps à comprendre votre
+  réalité avant de proposer quoi que ce soit."
+
+  Card 2 — icône <Handshake /> :
+  Titre : "On construit ensemble"
+  Description : "Vous n'êtes pas spectateur de votre
+  propre transformation. Chaque décision est prise
+  avec vous, pas pour vous."
+
+  Card 3 — icône <Zap /> :
+  Titre : "On livre, on reste"
+  Description : "La mission ne s'arrête pas à la
+  livraison. On mesure, on ajuste, on continue."
+
+Bottom tagline centré :
+"Votre bras droit. Toujours." —
+text-muted-foreground text-sm text-center italic.
+
+
+── 4. SERVICES SECTION ───────────────────────────────────
+
+Padding py-32 md:py-44. id="services"
+Border-t border-border/30.
+
+Label : "02 — SERVICES" text-xs tracking-[3px] uppercase
+text-muted-foreground mb-6.
+
+Heading : text-4xl md:text-6xl font-medium —
+"Ce que nous faisons,
+ concrètement."
+"concrètement." en font-serif italic.
+
+Sous-titre : text-muted-foreground text-lg max-w-2xl
+mx-auto mb-16 —
+"De la stratégie au déploiement opérationnel,
+ en passant par la production digitale haute performance."
+
+Bento Grid asymétrique (grid md:grid-cols-3 gap-4) :
+
+  Bloc 1 — GRAND (md:col-span-2) — liquid-glass
+  rounded-2xl p-10 :
+  Icône <Globe /> w-10 h-10 mb-4
+  Titre font-semibold text-xl : "Structuration & Stratégie"
+  Description text-muted-foreground text-sm :
+  "Organisation, stratégie, business plan : on transforme
+   votre vision en plan d'action concret et exécutable.
+   Chaque décision repose sur une analyse, pas sur une
+   intuition."
+  Tag bas de bloc : "CONSEIL OPÉRATIONNEL"
+  text-xs tracking-[2px] uppercase text-muted-foreground
+
+  Bloc 2 — PETIT — liquid-glass rounded-2xl p-8 :
+  Icône <Code2 /> w-8 h-8 mb-3
+  Titre : "YOR — Sites haute performance"
+  Description text-sm text-muted-foreground :
+  "React + Vite + Vercel. SEO 100/100.
+   Livré en 10 jours. Techniquement parfait,
+   sans maintenance."
+  Tag : "PRODUCTION DIGITALE"
+
+  Bloc 3 — PETIT — liquid-glass rounded-2xl p-8 :
+  Icône <Map /> w-8 h-8 mb-3
+  Titre : "Export & International"
+  Description text-sm text-muted-foreground :
+  "Marchés étrangers, réglementations, partenariats
+   locaux : on vous accompagne à chaque étape de votre
+   expansion internationale."
+  Tag : "DÉVELOPPEMENT"
+
+  Bloc 4 — PETIT — liquid-glass rounded-2xl p-8 :
+  Icône <Search /> w-8 h-8 mb-3
+  Titre : "Études & Recherche"
+  Description text-sm text-muted-foreground :
+  "Études de marché, analyses sectorielles, veille
+   stratégique : des données fiables pour des décisions
+   éclairées."
+  Tag : "ANALYSE"
+
+  Bloc 5 — GRAND (md:col-span-2) — liquid-glass
+  rounded-2xl p-10 :
+  Icône <TrendingUp /> w-10 h-10 mb-4
+  Titre font-semibold text-xl : "Strategic Value Assessment"
+  Description text-muted-foreground text-sm :
+  "En trois phases : audit stratégique 360°, flash
+   financier & opérationnel, recommandations & leviers
+   d'action. Un diagnostic complet avec livrables
+   directement exploitables — pour prendre les meilleures
+   décisions sans délai. Nous mobilisons aussi notre
+   réseau (investisseurs, partenaires, experts)."
+  Tag bas de bloc : "DIAGNOSTIC GLOBAL"
+
+
+── 5. PROCESS SECTION ────────────────────────────────────
+
+Padding py-32 md:py-44. id="process"
+Border-t border-border/30.
+
+Label : "03 — PROCESS" uppercase text-xs tracking-[3px]
+text-muted-foreground mb-6.
+
+Heading : text-4xl md:text-6xl font-medium —
+"Comment on travaille,
+ étape par étape."
+"étape par étape." en font-serif italic.
+
+Layout 2 colonnes sur desktop (grid md:grid-cols-2
+gap-16) :
+
+Colonne gauche — grande vidéo ou visuel :
+  Video looping autoplaying muted, rounded-2xl,
+  aspect-square object-cover.
+  Video URL : https://videos.pexels.com/video-files/16498883/16498883-hd_1920_1080_24fps.mp4
+  En attendant : fond liquid-glass rounded-2xl
+  avec une grande icône <ArrowRight /> centrée animée.
+
+Colonne droite — 4 étapes verticales :
+  Chaque étape : flex gap-6, numéro Playfair serif
+  text-5xl font-light text-muted-foreground/40,
+  + bloc texte titre/description.
+
+  Étape 01 :
+  Titre font-semibold : "Écoute & diagnostic"
+  Description text-sm text-muted-foreground :
+  "Premier rendez-vous sans agenda. On écoute, on
+  pose les vraies questions, on cartographie votre
+  situation."
+
+  Étape 02 :
+  Titre : "Proposition & cadrage"
+  Description : "Une proposition sur-mesure, pas un
+  catalogue. Objectifs, livrables, timeline, tarif.
+  Tout est transparent dès le départ."
+
+  Étape 03 :
+  Titre : "Exécution ensemble"
+  Description : "On s'immerge dans votre réalité.
+  Points réguliers, ajustements en temps réel,
+  décisions prises à deux."
+
+  Étape 04 :
+  Titre : "Livraison & suivi"
+  Description : "Le projet est livré. Mais on reste
+  disponibles. Parce qu'un bon conseil ne s'arrête
+  pas à la signature."
+
+Ligne verticale connectant les 4 étapes (position
+relative, trait 1px border-l border-border/50,
+masquée sur mobile).
+
+
+── 6. RÉALISATIONS SECTION ───────────────────────────────
+
+Padding py-32 md:py-44. id="realisations"
+Border-t border-border/30.
+
+Label : "05 — RÉALISATIONS" uppercase text-xs tracking-[3px]
+text-muted-foreground mb-6.
+
+Heading : text-4xl md:text-6xl font-medium —
+"Quelques missions
+ qui parlent pour nous."
+"qui parlent pour nous." en font-serif italic.
+
+Sous-titre : text-muted-foreground text-lg max-w-2xl
+mx-auto mb-16 —
+"Chaque projet est unique. Chaque client mérite
+ une réponse sur mesure."
+
+Grid de cards missions (grid md:grid-cols-3 gap-6) :
+Chaque card : liquid-glass rounded-2xl p-8,
+tag secteur en haut (text-xs tracking-[2px] uppercase
+text-muted-foreground/70 mb-3),
+titre font-semibold text-base mb-2,
+description text-sm text-muted-foreground.
+
+  Card 1 :
+  Tag : "ÉTUDES DE MARCHÉ"
+  Titre : "Marchés européens : Cosmétique & Construction"
+  Description : "Analyse comparative multi-pays
+  (FR, DE, BE, ES, IT, NL) pour un cabinet français
+  de conseil en valorisation financière."
+
+  Card 2 :
+  Tag : "AUDIT & PRÉVISIONS FINANCIÈRES"
+  Titre : "Plan d'affaires : Cabinet"
+  Description : "Audit complet du business plan,
+  analyse SWOT et modélisation financière détaillée."
+
+  Card 3 :
+  Tag : "PITCH DECK"
+  Titre : "Levée de fonds : Santé & Cosmétique"
+  Description : "Restructuration en pitch deck
+  percutant dans le secteur biotech."
+
+  Card 4 :
+  Tag : "RECHERCHE DE FINANCEMENT"
+  Titre : "Annuaire : Afrique francophone"
+  Description : "Cartographie des acteurs financiers
+  (startups, PME, ETI) pour une organisation
+  supranationale."
+
+  Card 5 :
+  Tag : "EXPANSION INTERNATIONALE"
+  Titre : "Implantation au Maroc"
+  Description : "Analyse sociodémographique des
+  grandes métropoles marocaines pour déploiement
+  commercial."
+
+  Card 6 :
+  Tag : "INNOVATION & START-UP"
+  Titre : "Accompagnement Contech"
+  Description : "Structuration, go-to-market et
+  développement d'une start-up sur brevet dans la
+  Construction Technology."
+
+
+── 7. ÉQUIPE SECTION ─────────────────────────────────────
+
+Padding py-32 md:py-44. id="equipe"
+Border-t border-border/30.
+
+Label : "06 — ÉQUIPE" uppercase text-xs tracking-[3px]
+text-muted-foreground mb-6.
+
+Heading : text-4xl md:text-6xl font-medium —
+"Les gens qui portent
+ vos projets."
+"vos projets." en font-serif italic.
+
+Sous-titre : text-muted-foreground text-lg max-w-2xl
+mx-auto mb-16 —
+"Chez Yamen, on ne délègue pas, on s'implique.
+ Voici ceux qui s'assoient à votre table et font
+ avancer les choses."
+
+Grid de cards équipe (grid md:grid-cols-2 lg:grid-cols-4
+gap-6) :
+Chaque card : liquid-glass rounded-2xl p-8,
+cercle avatar 64x64 rounded-full border border-border/50
+bg-secondary/50 (initiales centrées font-semibold text-lg),
+nom font-semibold text-base mt-4, rôle text-xs
+text-muted-foreground tracking-wider uppercase mt-1,
+ligne border-t border-border/30 mt-4 pt-4,
+bio text-xs text-muted-foreground leading-relaxed.
+
+  Card 1 : initiales "FO"
+  Rôle : "Fondateur & Associé"
+  Bio : "Diplômé de l'ESSEC, profil international
+  forgé entre l'Europe, l'Afrique et l'Asie.
+  Structuration, accompagnement, études de marché,
+  export et go-to-market."
+
+  Card 2 : initiales "RP"
+  Rôle : "Développement Commercial & Qualité"
+  Bio : "Commerciale dans l'âme, cheffe de projet
+  par nécessité. Plus de 3 ans sur le terrain :
+  vente, formation qualité, études de conformité."
+
+  Card 3 : initiales "CP"
+  Rôle : "Chef de Projet"
+  Bio : "Diplômé de l'ESSEC. Valorisation de
+  l'innovation, conseil, structuration entre
+  l'Europe et l'Afrique."
+
+  Card 4 : initiales "CO"
+  Rôle : "Consultants"
+  Bio : "Profils variés, diplômés de grandes écoles,
+  plusieurs années en accompagnement et conseil.
+  On ne travaille qu'avec des gens en qui on a
+  confiance."
+
+
+── 7. CTA SECTION ────────────────────────────────────────
+
+Padding py-32 md:py-44. id="contact"
+Border-t border-border/30.
+Overflow-hidden.
+
+Background : vidéo MP4 looping autoplaying muted,
+absolute inset-0 object-cover z-0.
+Video URL : https://videos.pexels.com/video-files/7670836/7670836-hd_1920_1080_30fps.mp4
+En attendant : fond radial-gradient violet comme hero.
+
+Overlay : absolute inset-0 bg-background/60 z-[1].
+
+Content (z-10, centré) :
+  Logo Yamen (même carré arrondi que la navbar, w-12 h-12)
+  mb-8.
+
+  Heading text-5xl md:text-7xl font-medium
+  tracking-[-2px] :
+  "Parlons de
+   votre projet."
+  "votre projet." en font-serif italic.
+
+  Subtitle text-muted-foreground text-lg max-w-xl mx-auto
+  mt-6 mb-12 :
+  "Dites-nous ce qui vous empêche de dormir.
+   Chaque grand projet commence par une conversation."
+
+  Bloc coordonnées (flex gap-8 justify-center mt-8
+  mb-12, text-muted-foreground text-sm) :
+  · "+33 7 82 72 20 02"
+  · "levysoulamax@yamen-global.com"
+  · "Disponibles lun–ven · Paris & International"
+
+  Two buttons :
+  · "Prendre rendez-vous" — bg-foreground text-background
+    rounded-lg px-8 py-3.5 font-medium,
+    whileHover scale 1.03, whileTap scale 0.97
+  · "contact@yamen-global.com" — liquid-glass rounded-lg
+    px-8 py-3.5 text-foreground font-medium
+    (lien mailto:)
+
+
+── 8. FOOTER ─────────────────────────────────────────────
+
+Simple py-12 px-8 md:px-28.
+Border-t border-border/20.
+
+Left : "© 2026 Yamen. Tous droits réservés."
+text-muted-foreground text-sm.
+
+Center : liens "Philosophie · Services · Contact"
+text-muted-foreground text-sm hover:text-foreground.
+
+Right : liens "Mentions légales · Confidentialité"
+text-muted-foreground text-sm.
++ icône LinkedIn lucide-react dans un liquid-glass
+circle button w-9 h-9.
+
+
+━━ KEY DEPENDENCIES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+framer-motion — toutes les animations
+hls.js — vidéo streaming CTA section
+@fontsource/inter (400, 500, 600, 700)
+@fontsource/instrument-serif (400, 400-italic)
+lucide-react — icônes
+tailwindcss-animate plugin
+
+
+━━ RESPONSIVE RULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+H1 hero : 80px desktop → 56px tablette → 40px mobile
+Bento Grid services : 3 col desktop → 2 col tablette
+                      → 1 col mobile
+Équipe cards : 3 col desktop → 1 col mobile
+Process : 2 col desktop → 1 col mobile (visuel caché,
+          étapes en colonne)
+Navbar : liens horizontaux desktop → hamburger < 768px
+
+
+━━ RÈGLES ABSOLUES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+· Aucune image IA, aucun stock photo, aucun placeholder
+  visuel — uniquement typographie + icônes Lucide
+· Un seul H1 sur toute la page (dans le hero)
+· Mobile-first. Aucun overflow horizontal.
+· Pas d'animations lourdes — tout doit sembler instantané
+· npm run build → 0 erreur, 0 warning avant export
+
+
+━━ NOTES CLAUDE CODE (post-Lovable) ━━━━━━━━━━━━━━━━━━━
+
+Les vidéos sont servies directement depuis le CDN Pexels.
+Claude Code n'a pas besoin de les télécharger.
+
+Pour chaque composant vidéo, s'assurer que la balise
+<video> contient :
+autoPlay muted loop playsInline preload="none"
+
+preload="none" est obligatoire pour ne pas pénaliser
+le score LCP/PageSpeed — les vidéos ne se chargent
+qu'à l'affichage, pas au premier rendu.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

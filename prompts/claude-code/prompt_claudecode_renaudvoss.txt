@@ -1,0 +1,463 @@
+PROMPT CLAUDE CODE — RENAUD VOSS AVOCATS
+Optimisation SEO complète · prestige-legal.vercel.app
+Généré le 03/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Voici le repo d'un site vitrine React/Vite/Tailwind exporté
+depuis Lovable. Commence par analyser toute la structure du
+projet : arborescence, composants, pages, fichiers publics,
+configuration Vite, polices, images.
+
+Ne touche à aucun composant visuel, aucune couleur Tailwind,
+aucune typographie, aucun layout existant sans me demander
+explicitement.
+
+Exécute chaque étape dans l'ordre. Après chaque étape,
+affiche un résumé de ce qui a été modifié ou créé.
+Si tu rencontres une ambiguïté, pose la question avant d'agir.
+
+
+━━ CONTEXTE DU SITE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Nom : Renaud Voss Avocats
+  Type : Cabinet d'avocats — droit des affaires
+  URL de production : https://prestige-legal.vercel.app
+  Adresse : 12 rue du Faubourg Saint-Honoré, 75008 Paris
+  Téléphone : +33 1 XX XX XX XX
+  Email : contact@renaudvoss.fr
+  Secteur Schema.org : LegalService
+  Langues : FR, EN, DE
+  Fondé en : 2011
+
+  Pages du site :
+  · /                   → Accueil
+  · /expertises         → Nos expertises
+  · /cabinet            → Le cabinet
+  · /equipe             → L'équipe
+  · /contact            → Contact & rendez-vous
+  · /mentions-legales   → Mentions légales
+  · /confidentialite    → Politique de confidentialité
+  · /rgpd               → Protection des données
+
+
+━━ ÉTAPE 1 — VERCEL.JSON (routing BrowserRouter) ━━━━━━━━
+
+  Crée un fichier vercel.json à la racine du projet :
+
+  {
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }
+
+  Ce fichier est indispensable : sans lui, toute navigation
+  directe vers une URL (ex: /expertises) renvoie une 404
+  sur Vercel avec React BrowserRouter.
+
+  Vérifie qu'il n'existe pas déjà avant de le créer.
+
+
+━━ ÉTAPE 2 — SITEMAP.XML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Génère /public/sitemap.xml avec toutes les pages.
+  Format : XML standard, encodage UTF-8, lastmod aujourd'hui.
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/expertises</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/cabinet</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/equipe</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/contact</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/mentions-legales</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/confidentialite</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+    </url>
+
+    <url>
+      <loc>https://prestige-legal.vercel.app/rgpd</loc>
+      <lastmod>[DATE DU JOUR]</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+    </url>
+
+  </urlset>
+
+  Vérifie que le fichier est accessible publiquement
+  après build dans le dossier /dist.
+
+
+━━ ÉTAPE 3 — ROBOTS.TXT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Crée ou remplace /public/robots.txt :
+
+  User-agent: *
+  Allow: /
+  Disallow: /dist/
+  Sitemap: https://prestige-legal.vercel.app/sitemap.xml
+
+  Vérifie qu'il n'existe pas déjà un robots.txt avec
+  un contenu différent avant d'écraser.
+
+
+━━ ÉTAPE 4 — BALISES META & OPENGRAPH ━━━━━━━━━━━━━━━━━━
+
+  Dans index.html (ou dans chaque composant de page via
+  react-helmet si déjà installé), vérifie et optimise
+  les balises meta pour chaque page.
+
+  Si react-helmet n'est pas installé : installe
+  react-helmet-async et enveloppe chaque page.
+
+  Structure à appliquer sur chaque page :
+
+  — Accueil :
+  <title>Renaud Voss Avocats — Avocat droit des affaires
+  à Paris 8e</title>
+  <meta name="description" content="Cabinet d'avocats
+  parisien spécialisé en droit des affaires, M&A et
+  contentieux commercial. Conseil sur mesure pour
+  dirigeants de PME. Paris 8e." />
+  <link rel="canonical" href="https://prestige-legal.vercel.app/" />
+  <meta property="og:title" content="Renaud Voss Avocats
+  — Avocat droit des affaires à Paris 8e" />
+  <meta property="og:description" content="Cabinet
+  d'avocats parisien spécialisé en droit des affaires,
+  M&A et contentieux. Paris 8e." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url"
+  content="https://prestige-legal.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  — Expertises :
+  title → "Nos expertises — M&A, Contentieux, Contrats
+           | Avocat Paris | Renaud Voss Avocats"
+  description → "Droit des sociétés, fusions-acquisitions,
+                  contentieux commercial, contrats et
+                  structuration patrimoniale. Cabinet avocat
+                  Paris 8e spécialisé droit des affaires."
+  canonical → /expertises
+
+  — Cabinet :
+  title → "Le Cabinet — Avocat droit des affaires Paris
+           depuis 2011 | Renaud Voss"
+  description → "Cabinet boutique fondé en 2011. 12 avocats
+                  spécialisés en droit des affaires à Paris.
+                  Suivi direct par un associé. Paris 8e."
+  canonical → /cabinet
+
+  — Équipe :
+  title → "L'Équipe — Maître Renaud & Maître Voss
+           | Avocats Paris 8"
+  description → "Maître Claire Renaud et Maître Jonas Voss,
+                  avocats associés fondateurs spécialisés
+                  en droit des affaires et contentieux
+                  commercial à Paris."
+  canonical → /equipe
+
+  — Contact :
+  title → "Prendre rendez-vous — Cabinet Renaud Voss
+           Avocats Paris 8e"
+  description → "Contactez le cabinet Renaud Voss Avocats
+                  à Paris. Rendez-vous sous 24h avec un
+                  associé. Droit des affaires, M&A,
+                  contentieux. Paris 75008."
+  canonical → /contact
+
+  — Pages légales : titles et descriptions déjà présents,
+    vérifie uniquement les balises canonical.
+
+  Règle absolue : aucune description ne dépasse 155 caractères.
+  Vérifie chaque description avec un compteur.
+
+
+━━ ÉTAPE 5 — JSON-LD SCHEMA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Injecte ce bloc JSON-LD dans le <head> de index.html,
+  juste avant </head>, à l'emplacement commenté
+  "<!-- JSON-LD Schema : à injecter -->" s'il existe :
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Renaud Voss Avocats",
+    "alternateName": "Cabinet Renaud Voss",
+    "description": "Cabinet d'avocats parisien spécialisé
+      en droit des affaires, fusions-acquisitions et
+      contentieux commercial. Paris 8e.",
+    "url": "https://prestige-legal.vercel.app",
+    "telephone": "+33-1-XX-XX-XX-XX",
+    "email": "contact@renaudvoss.fr",
+    "foundingDate": "2011",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": 12
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "12 rue du Faubourg Saint-Honoré",
+      "addressLocality": "Paris",
+      "postalCode": "75008",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.8719,
+      "longitude": 2.3094
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday","Tuesday","Wednesday","Thursday","Friday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Paris"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Domaines d'expertise",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Droit des sociétés et M&A"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Contentieux commercial"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Contrats et négociation"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Droit du travail dirigeants"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Structuration patrimoniale"
+          }
+        }
+      ]
+    },
+    "sameAs": []
+  }
+  </script>
+
+  Valide la syntaxe JSON avant injection.
+  Vérifie que le bloc est bien dans le <head> et non dans <body>.
+
+
+━━ ÉTAPE 6 — IMAGES EN .WEBP ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Analyse tous les fichiers images du projet
+  (JPG, PNG, GIF dans /src/assets/ et /public/).
+
+  Pour chaque image trouvée :
+  · Convertis en .webp avec qualité 85
+  · Mets à jour tous les imports et références dans
+    les composants React
+  · Ajoute loading="lazy" sur tous les <img> sauf
+    ceux du hero (above the fold)
+  · Ajoute width et height explicites sur chaque <img>
+    pour éviter le Cumulative Layout Shift (CLS)
+  · Ajoute un attribut alt descriptif si absent
+
+  Si le projet ne contient aucune image (design 100%
+  typographique), indique-le et passe à l'étape suivante.
+
+
+━━ ÉTAPE 7 — POLICES EN LOCAL ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Vérifie comment les polices sont chargées actuellement.
+
+  Si les polices sont appelées via Google Fonts (lien
+  externe ou @import URL) :
+
+  · Télécharge Playfair Display (weights: 400, 700 italic)
+    et DM Sans (weights: 300, 400, 500) depuis Google Fonts
+  · Place les fichiers .woff2 dans /src/assets/fonts/
+  · Crée ou mets à jour /src/styles/fonts.css avec
+    les déclarations @font-face locales
+  · Supprime tous les appels Google Fonts externes
+    (<link> dans index.html ou @import URL dans CSS)
+  · Ajoute <link rel="preload"> dans index.html pour
+    les deux polices principales (format woff2)
+
+  Format @font-face à utiliser :
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('/assets/fonts/playfair-display-v37-latin-regular.woff2')
+         format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  (répéter pour chaque variante)
+
+  font-display: swap est obligatoire sur chaque déclaration
+  pour éviter le Flash Of Invisible Text (FOIT).
+
+
+━━ ÉTAPE 8 — PERFORMANCES TECHNIQUES ━━━━━━━━━━━━━━━━━━━
+
+  Dans vite.config.ts, vérifie et ajoute si absent :
+
+  · base: '/'
+  · build.outDir: 'dist'
+  · build.assetsDir: 'assets'
+  · build.rollupOptions.output.manualChunks pour séparer
+    vendor (react, react-dom) du code applicatif
+  · build.minify: 'terser' si terser est disponible,
+    sinon 'esbuild'
+
+  Dans index.html, ajoute dans le <head> :
+  · <meta name="viewport" content="width=device-width,
+    initial-scale=1.0" /> si absent
+  · <meta charset="UTF-8" /> en premier si absent
+  · <meta name="theme-color" content="#2C4A3E" />
+  · <link rel="preconnect" href="https://fonts.googleapis.com" />
+    uniquement si les polices ne sont pas encore en local
+
+  Vérifie que le fichier index.html ne contient
+  aucun console.log et aucune valeur sensible en dur.
+
+
+━━ ÉTAPE 9 — ACCESSIBILITÉ & SEO TECHNIQUE ━━━━━━━━━━━━━
+
+  Passe en revue tous les composants et vérifie :
+
+  · Chaque icône Lucide-React a un aria-label descriptif
+  · Chaque bouton a un aria-label si le texte seul
+    n'est pas suffisamment explicite
+  · Chaque <img> a un attribut alt non vide
+  · Le formulaire de contact : chaque input a un <label>
+    associé via htmlFor / id
+  · La hiérarchie des titres est respectée :
+    un seul H1 par page, H2 par section, H3 si nécessaire
+  · Les liens de navigation utilisent <Link> de React Router
+    (pas de <a href> pour les routes internes)
+  · La page 404 existe et contient un lien retour accueil
+
+  Ajoute la balise <html lang="fr"> si absente.
+
+
+━━ ÉTAPE 10 — BUILD FINAL & VÉRIFICATION ━━━━━━━━━━━━━━━
+
+  Lance npm run build.
+
+  Le build doit produire :
+  · 0 erreur
+  · 0 warning TypeScript ou ESLint
+  · Un dossier /dist/ avec index.html + assets optimisés
+  · Les fichiers sitemap.xml et robots.txt présents
+    dans /dist/
+  · Le fichier vercel.json présent à la racine
+
+  Affiche le résumé du bundle :
+  · Taille totale du JS (objectif < 200kb gzippé)
+  · Taille totale du CSS
+  · Liste des fichiers générés dans /dist/assets/
+
+  Si des warnings apparaissent, règle-les avant de
+  continuer. Ne pousse pas un build avec des warnings.
+
+
+━━ ÉTAPE 11 — GIT PUSH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Une fois le build validé 0 erreur / 0 warning :
+
+  git add .
+  git commit -m "feat: SEO complet — sitemap, robots,
+  meta, JSON-LD, polices locales, webp, vercel.json"
+  git push
+
+  Vercel déploiera automatiquement dans les 2 minutes.
+  Confirme que le push a été effectué avec succès.
+
+
+━━ RÉSUMÉ ATTENDU À LA FIN ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Après toutes les étapes, fournis un tableau récapitulatif :
+
+  ✓ vercel.json créé
+  ✓ sitemap.xml — N pages indexées
+  ✓ robots.txt — sitemap référencé
+  ✓ Meta tags — N pages optimisées
+  ✓ Balises canonical — N pages
+  ✓ OpenGraph — N pages
+  ✓ JSON-LD LegalService — injecté
+  ✓ Images — N fichiers convertis en .webp
+  ✓ Polices — hébergées en local (woff2)
+  ✓ font-display: swap — activé
+  ✓ lang="fr" — présent
+  ✓ aria-label — N icônes vérifiées
+  ✓ npm run build — 0 erreur, 0 warning
+  ✓ git push — déployé sur Vercel
+
+  Indique clairement les points qui nécessitent
+  une action manuelle de ta part (ex: numéro de
+  téléphone réel à renseigner, RCS à compléter).
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

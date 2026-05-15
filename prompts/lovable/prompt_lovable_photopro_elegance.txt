@@ -1,0 +1,186 @@
+PROMPT LOVABLE — PHOTO PRO (VERSION ÉLÉGANCE)
+Généré le 02/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Crée un site vitrine haut de gamme pour Photo Pro, studio de
+photographie commerciale à Paris, Île-de-France.
+Cible : entreprises et marques (BtoB).
+
+CONTRAINTE ABSOLUE : aucune image IA, aucun placeholder
+d'image, aucun stock photo. Le design repose entièrement sur
+la typographie, les blocs de couleur et les icônes SVG.
+
+
+━━ STACK TECHNIQUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- React + Tailwind CSS
+- Icônes : bibliothèque Lucide-React exclusivement
+- Polices Google Fonts :
+    · Titre      → "Playfair Display" (serif, élégant)
+    · Corps      → "DM Sans" (sans-serif, lisible)
+- Aucune image (ni <img>, ni background-image URL externe)
+- Aucune animation lourde — transitions CSS légères uniquement
+
+
+━━ STRUCTURE HTML SÉMANTIQUE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Pages : Accueil · Nos services · À propos · Contact
+
+Balise H1 unique (page Accueil) :
+"Photographe professionnel à Paris — Shooting commercial
+et retouche pour marques et créateurs"
+
+Une balise H2 par section.
+Chaque icône Lucide-React avec un aria-label descriptif.
+
+
+━━ DESIGN SYSTEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Palette :
+  · Fond principal   → #0D0D0D  (noir profond)
+  · Fond secondaire  → #F5F0EB  (ivoire chaud)
+  · Accent           → #6B3FA0  (violet profond)
+  · Accent clair     → #E8DEFF  (violet pâle, pour tags)
+  · Texte sur sombre → #F5F0EB
+  · Texte sur clair  → #0D0D0D
+
+Typographie :
+  · H1         → Playfair Display, 72px, italic, noir ou ivoire
+  · H2         → Playfair Display, 40px, normal
+  · Sous-titres → DM Sans, 14px, lettre-espacement 0.15em, uppercase
+  · Corps      → DM Sans, 16px, line-height 1.75
+  · Chiffres   → Playfair Display, 80–120px, très grand, couleur accent
+
+
+━━ MISE EN PAGE — PAGE ACCUEIL ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+── HERO (plein écran, fond #0D0D0D) ───────────────────────
+
+  Bandeau texte défilant horizontal (marquee CSS) :
+  "SHOOTING COMMERCIAL · RETOUCHE PROFESSIONNELLE ·
+   LIVRAISON SUR MESURE · PARIS ·"
+  (DM Sans uppercase, couleur #6B3FA0, très petit, en haut)
+
+  Titre principal centré :
+  "L'image qui
+   fait vendre."
+  (Playfair Display, italic, 96px, couleur #F5F0EB)
+
+  Sous-titre :
+  "Studio photo commercial à Paris — shooting, retouche
+   et livraison soignée pour les marques et les créateurs."
+  (DM Sans, 18px, #F5F0EB à 60% d'opacité)
+
+  CTA :
+  · Bouton primaire   → "Démarrer un projet"   fond #6B3FA0
+  · Bouton secondaire → "Voir nos services"    bordure #F5F0EB
+
+  Statistiques en ligne (3 chiffres, Playfair Display très grand) :
+  ┌──────────────┬──────────────┬──────────────┐
+  │     20+      │    48h       │    100%      │
+  │ ans d'expér. │ livraison    │ sur mesure   │
+  └──────────────┴──────────────┴──────────────┘
+
+
+── BENTO GRID — SERVICES (fond #F5F0EB) ───────────────────
+
+  Grille CSS asymétrique, 6 blocs, style editorial :
+
+  Bloc 1 — Grand (spanning 2 colonnes), fond #0D0D0D
+    Icône Lucide : <Camera /> (aria-label="Shooting studio")
+    Titre H2 : "Shooting studio & terrain"
+    Texte : "En studio maîtrisé ou en situation réelle,
+    nous capturons l'essence de vos produits et de votre marque."
+
+  Bloc 2 — Moyen, fond #6B3FA0
+    Icône Lucide : <Wand2 /> (aria-label="Retouche photo")
+    Titre H2 : "Retouche professionnelle"
+    Texte : "Chaque image travaillée avec soin — colorimétrie,
+    détourage, finitions haut de gamme."
+
+  Bloc 3 — Petit, fond #E8DEFF
+    Icône Lucide : <Zap /> (aria-label="Livraison rapide")
+    Chiffre géant : "48h"
+    Texte : "Délai de livraison standard"
+
+  Bloc 4 — Petit, fond #0D0D0D
+    Icône Lucide : <CalendarCheck /> (aria-label="Disponibilité")
+    Texte : "Ouvert 365 jours par an, vacances comprises."
+
+  Bloc 5 — Moyen, fond #F5F0EB, bordure #0D0D0D
+    Icône Lucide : <Users /> (aria-label="Accompagnement")
+    Titre : "Un interlocuteur unique"
+    Texte : "Suivi humain, réactif et personnalisé
+    de la prise de brief à la livraison finale."
+
+  Bloc 6 — Petit, fond #6B3FA0
+    Icône Lucide : <BadgeCheck /> (aria-label="Expérience")
+    Chiffre géant : "20+"
+    Texte : "Années d'expérience"
+
+
+── SECTION CONFIANCE (fond #0D0D0D) ───────────────────────
+
+  Titre H2 centré (Playfair Display, ivoire) :
+  "Ils nous font confiance"
+
+  4 blocs secteurs en ligne, fond #1A1A1A, bordure subtile :
+  · Mode & Luxe       — icône <Gem />
+  · Food & Boissons   — icône <UtensilsCrossed />
+  · Tech & Produits   — icône <Cpu />
+  · Architecture      — icône <Building2 />
+
+
+── FAQ (fond #F5F0EB) ─────────────────────────────────────
+
+  Accordéon élégant, 4 questions :
+  Q1 : Êtes-vous ouverts pendant les vacances et jours fériés ?
+  Q2 : Quels sont vos délais de livraison ?
+  Q3 : Comment sont calculés vos tarifs ?
+  Q4 : Dans quels secteurs avez-vous de l'expérience ?
+
+  Style : ligne de séparation fine, icône <ChevronDown />
+  Animation : transition CSS height, 200ms ease
+
+
+── CONTACT (fond #0D0D0D) ─────────────────────────────────
+
+  Titre H2 géant centré :
+  "Parlons de
+   votre projet."
+  (Playfair Display, italic, 80px, #F5F0EB)
+
+  Formulaire minimaliste (3 champs) :
+  · Votre nom
+  · Votre email
+  · Décrivez votre projet
+  Bouton : "Envoyer" fond #6B3FA0
+
+  Infos de contact en pied :
+  · Icône <Phone />  → 07 XX XX XX XX
+  · Icône <Mail />   → levysoulamax@gmail.com
+  · Icône <MapPin /> → Paris, France
+
+
+── FOOTER ─────────────────────────────────────────────────
+
+  Fond #0D0D0D, très sobre.
+  "© 2026 Photo Pro · Paris"
+  Mentions légales · Politique de confidentialité
+
+
+━━ SEO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Meta description (155 car.) :
+"Photo Pro accompagne les marques et créateurs pour leurs
+besoins en photographie commerciale, shooting studio et
+retouche professionnelle à Paris."
+
+Balises OpenGraph dans le <head> :
+· og:title       → "Photo Pro — Studio photo commercial à Paris"
+· og:description → (même que meta description)
+· og:type        → website
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -1,0 +1,80 @@
+PROMPT LOVABLE — PHOTO PRO
+Généré le 02/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Crée un site vitrine professionnel pour Photo Pro, studio de
+photographie commerciale basé à Paris, Île-de-France.
+Cible : entreprises et marques (BtoB).
+
+
+━━ STRUCTURE HTML ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Structure HTML strictement sémantique :
+
+- Une seule balise H1 :
+  "Photographe professionnel à Paris — Shooting commercial
+  et retouche pour marques et créateurs"
+
+- Une balise H2 par section de service
+
+- Chaque image avec un attribut alt descriptif et précis
+
+Pages du site : Accueil · Nos services · À propos · Contact
+
+
+━━ SERVICES (3 sections distinctes) ━━━━━━━━━━━━━━━━━━━━━
+
+1. Shooting studio ou en situation réelle
+2. Retouches et perfectionnement professionnels
+3. Livraison rapide, soignée et sur mesure
+
+
+━━ POINTS DE DIFFÉRENCE (à intégrer dans les textes) ━━━━
+
+- Plus de 20 ans d'expérience
+- Ouvert toute l'année, vacances et jours fériés compris
+- Réactivité et suivi personnalisé
+- Prix compétitifs
+- Accompagnement humain et adapté à chaque projet
+- Expérience dans tous les secteurs d'activité
+
+
+━━ FAQ (section dédiée) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Q1 : Êtes-vous ouverts pendant les vacances scolaires et jours fériés ?
+Q2 : Quels sont vos délais de livraison ?
+Q3 : Comment sont calculés vos tarifs ?
+Q4 : Dans quels secteurs d'activité avez-vous de l'expérience ?
+
+
+━━ DESIGN & TON ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ton : chaleureux et humain
+Textes : directs, accessibles, sans jargon technique
+
+Couleur d'accent : violet (teinte professionnelle, pas flashy)
+Inspiration : monopo.london — mise en page aérée, typographie forte
+
+Design mobile-first. Pas d'animations lourdes.
+
+
+━━ SEO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Meta description (155 car. max) :
+"Photo Pro accompagne les marques et créateurs pour leurs
+besoins en photographie commerciale, shooting studio et
+retouche professionnelle à Paris."
+
+Balises OpenGraph dans le head :
+og:title / og:description / og:type
+
+
+━━ CONTACT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Téléphone    : 07 XX XX XX XX
+Email        : levysoulamax@gmail.com
+Localisation : Paris, France
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

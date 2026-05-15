@@ -1,0 +1,666 @@
+PROMPT CLAUDE CODE — 1/3 — LEVEL UP SEO & RÉFÉRENCEMENT
+Renaud Voss Avocats · prestige-legal.vercel.app
+Généré le 03/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Objectif : pousser le référencement naturel au maximum.
+Les bases SEO sont déjà en place (sitemap, robots, meta,
+JSON-LD). Ce prompt va plus loin : structure sémantique
+renforcée, signaux d'autorité, SEO local, performance
+de crawl et richesse du contenu pour Google.
+
+Ne touche à aucun composant visuel sans me demander.
+Exécute dans l'ordre, résumé après chaque étape.
+
+
+━━ ÉTAPE 1 — JSON-LD ENRICHI ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Enrichis le JSON-LD LegalService existant avec :
+
+  · FAQ Schema — extrait les 6 questions/réponses de
+    la page Accueil et génère un bloc FAQPage séparé :
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Intervenez-vous pour les PME ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[texte de la réponse]"
+        }
+      }
+      // répéter pour chaque question
+    ]
+  }
+  </script>
+
+  · BreadcrumbList Schema sur chaque page intérieure :
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "https://prestige-legal.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "[Nom de la page]",
+        "item": "https://prestige-legal.vercel.app/[route]"
+      }
+    ]
+  }
+  </script>
+
+  · Person Schema pour chaque associé (page /equipe) :
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Claire Renaud",
+    "jobTitle": "Avocate associée fondatrice",
+    "worksFor": {
+      "@type": "LegalService",
+      "name": "Renaud Voss Avocats"
+    },
+    "knowsAbout": ["Droit des sociétés", "Fusions-acquisitions"]
+  }
+
+  Valide chaque bloc JSON avant injection.
+
+
+━━ ÉTAPE 2 — SEO LOCAL RENFORCÉ ━━━━━━━━━━━━━━━━━━━━━━━
+
+  Google Maps & local signals :
+
+  · Dans le JSON-LD LegalService, ajoute si absent :
+    "hasMap": "https://maps.google.com/?q=12+rue+du+Faubourg+Saint-Honoré+Paris+75008"
+    "priceRange": "€€€"
+    "currenciesAccepted": "EUR"
+    "paymentAccepted": "Cash, Credit Card"
+
+  · Dans la page /contact, vérifie que l'adresse complète
+    est balisée avec des microdonnées HTML :
+    <address> tag autour du bloc coordonnées
+    Chaque partie de l'adresse dans un span identifiable
+
+  · Ajoute une balise meta geo dans index.html :
+    <meta name="geo.region" content="FR-75" />
+    <meta name="geo.placename" content="Paris" />
+    <meta name="geo.position" content="48.8719;2.3094" />
+    <meta name="ICBM" content="48.8719, 2.3094" />
+
+
+━━ ÉTAPE 3 — PERFORMANCE DE CRAWL ━━━━━━━━━━━━━━━━━━━━━
+
+  · Dans robots.txt, ajoute le crawl-delay pour les
+    bots secondaires :
+    User-agent: *
+    Allow: /
+    Disallow: /dist/
+    Crawl-delay: 1
+    Sitemap: https://prestige-legal.vercel.app/sitemap.xml
+
+  · Crée un sitemap index si le site dépasse 8 pages
+    à terme — structure prête :
+    /public/sitemap-index.xml pointant vers /sitemap.xml
+
+  · Dans le sitemap.xml, vérifie que les priorités
+    reflètent l'importance réelle :
+    / → 1.0
+    /expertises → 0.9
+    /contact → 0.9
+    /cabinet → 0.8
+    /equipe → 0.8
+    pages légales → 0.3
+
+  · Ajoute un fichier /public/security.txt :
+    Contact: contact@renaudvoss.fr
+    Preferred-Languages: fr, en
+
+
+━━ ÉTAPE 4 — BALISES MÉTA AVANCÉES ━━━━━━━━━━━━━━━━━━━━
+
+  Ajoute dans le <head> de index.html si absent :
+
+  · Langue et région :
+    <meta http-equiv="content-language" content="fr-FR" />
+
+  · Robots avancés :
+    <meta name="robots" content="index, follow,
+    max-snippet:-1, max-image-preview:large,
+    max-video-preview:-1" />
+
+  · Auteur et copyright :
+    <meta name="author" content="Renaud Voss Avocats" />
+    <meta name="copyright" content="Renaud Voss Avocats" />
+
+  · Catégorie de site :
+    <meta name="category" content="Legal Services" />
+    <meta name="classification" content="Business" />
+
+  · Revisit après :
+    <meta name="revisit-after" content="30 days" />
+
+  · Apple mobile :
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title"
+    content="Renaud Voss Avocats" />
+
+  · Favicon complet — vérifie que tous les formats
+    sont présents dans /public/ :
+    favicon.ico · favicon-16x16.png · favicon-32x32.png
+    apple-touch-icon.png · site.webmanifest
+    Si absents : crée un favicon SVG sobre avec les
+    initiales "RV" en Playfair Display vert #2C4A3E
+    sur fond ivoire #FAFAF7
+
+
+━━ ÉTAPE 5 — STRUCTURE SÉMANTIQUE HTML ━━━━━━━━━━━━━━━━
+
+  Parcours tous les composants et vérifie :
+
+  · Les sections utilisent <section> avec aria-labelledby
+    pointant vers leur H2
+  · La navigation principale est dans <nav aria-label="Navigation principale">
+  · Le footer est dans <footer> avec role="contentinfo"
+  · Le hero est dans <header role="banner">
+  · Les articles de blog ou contenu long utilisent <article>
+  · Les listes de services utilisent <ul> ou <ol>
+    (pas des div répétées)
+  · Chaque card de témoignage est dans <blockquote>
+    avec <cite> pour l'auteur
+  · Le formulaire de contact est dans <main>
+
+  Aucune modification visuelle — uniquement les balises
+  HTML sémantiques enveloppantes.
+
+
+━━ ÉTAPE 6 — PERFORMANCE CORE WEB VITALS ━━━━━━━━━━━━━━
+
+  Objectif : LCP < 2.5s, FID < 100ms, CLS = 0
+
+  LCP (Largest Contentful Paint) :
+  · Le titre H1 du hero doit être le LCP element
+  · Ajoute fetchpriority="high" sur tout élément
+    critique above the fold
+  · Précharge les polices critiques avec :
+    <link rel="preload" as="font" type="font/woff2"
+    href="/assets/fonts/playfair-display-italic.woff2"
+    crossorigin="anonymous" />
+
+  CLS (Cumulative Layout Shift) :
+  · Vérifie que tous les éléments qui apparaissent
+    au scroll ont une taille réservée (min-height)
+  · Les icônes Lucide ont une taille fixe explicite
+    (width et height en px, pas seulement en rem)
+  · Aucun contenu ne se charge sans espace réservé
+
+  FID / INP (Interaction to Next Paint) :
+  · Les event listeners sont en passive: true quand
+    possible (scroll, touchstart)
+  · Aucun calcul lourd dans le thread principal
+    au chargement
+
+
+━━ BUILD & PUSH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  npm run build → 0 erreur, 0 warning
+  git add .
+  git commit -m "feat: SEO level up — JSON-LD enrichi,
+  local SEO, Core Web Vitals, sémantique HTML"
+  git push origin main
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+
+
+PROMPT CLAUDE CODE — 2/3 — AUDIT COMPLET & CORRECTIONS
+Renaud Voss Avocats · prestige-legal.vercel.app
+Généré le 03/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Effectue un audit exhaustif du repo et du site déployé.
+Objectif : zéro erreur, zéro oubli, zéro point de friction
+avant l'audit PageSpeed officiel et la livraison.
+
+Audite d'abord. Présente le rapport complet.
+Puis demande mon accord avant de corriger quoi que ce soit.
+
+
+━━ 1. AUDIT FICHIERS CRITIQUES ━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  · vercel.json — présent à la racine ? Contient le
+    rewrite /* → /index.html ?
+  · /public/sitemap.xml — 8 pages ? URL correcte ?
+    XML valide ? Accessible sur le site déployé ?
+  · /public/robots.txt — Sitemap référencé ?
+    Aucune ligne Disallow bloquante ?
+  · /src/styles/fonts.css — @font-face locaux ?
+    font-display: swap sur chaque déclaration ?
+  · .env.example — variables définies ?
+  · index.html — charset UTF-8 en premier ?
+    viewport ? lang="fr" ? theme-color ?
+    JSON-LD dans le head ? Canonical ?
+
+  Résultat : ✓ OK ou ✗ PROBLÈME + détail pour chaque.
+
+
+━━ 2. AUDIT SEO PAGE PAR PAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Pour chacune des 8 pages :
+
+  / · /expertises · /cabinet · /equipe · /contact
+  /mentions-legales · /confidentialite · /rgpd
+
+  Vérifie sur chaque page :
+  · H1 unique — présent ? Contient le mot-clé + ville ?
+  · H2 présents sur chaque section
+  · Hiérarchie H1 → H2 → H3 sans saut
+  · Meta title : présent ? Unique ? Entre 30 et 60 car. ?
+  · Meta description : présente ? Unique ?
+    Entre 120 et 155 car. exactement ?
+  · Canonical : présente ? URL absolue correcte ?
+  · og:title, og:description, og:type : présents ?
+  · Twitter Card : présente ?
+  · Aucun lien interne cassé
+
+  Tableau récapitulatif page par page à la fin.
+
+
+━━ 3. AUDIT PERFORMANCES & BUNDLE ━━━━━━━━━━━━━━━━━━━━━
+
+  · Lance npm run build — 0 erreur, 0 warning ?
+  · Taille JS chunk principal < 200kb gzippé ?
+  · Taille CSS totale < 50kb ?
+  · Aucun appel Google Fonts externe (réseau)
+  · Polices chargées via @font-face local uniquement
+  · <link rel="preload"> pour les 2 polices principales
+  · Toutes les images en .webp — aucun JPG/PNG restant
+  · loading="lazy" sur toutes les images hors hero
+  · width et height explicites sur chaque <img>
+  · Aucun console.log résiduel (grep dans tout /src)
+  · Aucun script tiers synchrone dans le <head>
+  · will-change utilisé uniquement sur les éléments
+    réellement animés (pas en masse)
+  · Aucune dépendance inutilisée dans package.json
+
+
+━━ 4. AUDIT ROUTING & NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━
+
+  · 8 routes + route 404 définies dans React Router
+  · Chaque route pointe vers un composant existant
+  · Aucun lien interne en <a href> — tous en <Link>
+  · Les liens du footer en <Link> React Router
+  · Page active visuellement identifiée dans la nav
+  · Menu hamburger mobile se ferme au clic sur un lien
+  · Navigation directe URL fonctionne (grâce à vercel.json)
+
+
+━━ 5. AUDIT FORMULAIRE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  · Chaque input a un id unique
+  · Chaque input a un <label> via htmlFor
+  · Champs obligatoires ont l'attribut required
+  · Email → type="email"
+  · Téléphone → type="tel"
+  · Pas d'adresse email en dur dans le code source
+  · État de succès après envoi visible
+  · Spinner Loader2 pendant l'envoi
+
+
+━━ 6. AUDIT ACCESSIBILITÉ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  · Chaque icône Lucide a un aria-label non vide
+  · Tous les boutons ont un texte ou aria-label explicite
+  · focus-visible sur tous les éléments interactifs
+  · Contraste vérifié :
+    #1A1A1A sur #FAFAF7 → ratio attendu > 15:1 ✓
+    #FAFAF7 sur #2C4A3E → calculer ratio exact
+    #8B7355 sur #FAFAF7 → calculer ratio exact
+    (objectif ≥ 4.5:1 pour le texte normal)
+  · Aucun élément interactif inaccessible au clavier
+  · <html lang="fr"> présent
+
+
+━━ 7. AUDIT CONTENU & TEXTES ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Grep dans tout /src pour détecter :
+  · "[À COMPLÉTER]" — placeholders non remplacés
+  · "XX XX XX XX" — numéro de téléphone fictif
+  · "Lorem ipsum" — contenu de test
+  · "[NOM]", "[EMAIL]", "[URL]" — variables non remplacées
+  · "console.log" — logs de debug
+
+  Vérifie également :
+  · Section témoignages présente sur /
+  · FAQ contient 6 questions minimum
+  · Pages légales complètes (pas de sections vides)
+  · Footer contient © 2026 + 3 liens légaux
+  · La ligne verticale signature est présente sur
+    toutes les pages (composant Layout)
+
+
+━━ 8. AUDIT SÉCURITÉ BASIQUE ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  · Aucune clé API, token ou secret dans le code source
+  · Le fichier .env n'est pas commité (vérifie .gitignore)
+  · .env.example commité sans valeurs sensibles
+  · Aucune donnée personnelle hardcodée dans les composants
+  · Les headers de sécurité dans vercel.json :
+    Vérifie ou ajoute :
+    {
+      "headers": [
+        {
+          "source": "/(.*)",
+          "headers": [
+            { "key": "X-Content-Type-Options",
+              "value": "nosniff" },
+            { "key": "X-Frame-Options",
+              "value": "DENY" },
+            { "key": "X-XSS-Protection",
+              "value": "1; mode=block" },
+            { "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin" }
+          ]
+        }
+      ]
+    }
+
+
+━━ RAPPORT FINAL ATTENDU ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ━━ FICHIERS CRITIQUES
+  ✓/✗  vercel.json + headers sécurité
+  ✓/✗  sitemap.xml (8 pages)
+  ✓/✗  robots.txt
+  ✓/✗  fonts.css (font-display: swap)
+  ✓/✗  JSON-LD LegalService + FAQPage + BreadcrumbList
+
+  ━━ SEO TECHNIQUE (par page)
+  ✓/✗  H1 unique — 8/8 pages
+  ✓/✗  Meta titles — 8/8 pages (30–60 car.)
+  ✓/✗  Meta descriptions — 8/8 pages (120–155 car.)
+  ✓/✗  Canonical — 8/8 pages
+  ✓/✗  OpenGraph — 8/8 pages
+  ✓/✗  Twitter Card — 8/8 pages
+  ✓/✗  lang="fr"
+
+  ━━ PERFORMANCES
+  ✓/✗  Polices en local — 0 appel externe
+  ✓/✗  Images en .webp
+  ✓/✗  Bundle JS < 200kb gzippé
+  ✓/✗  0 console.log résiduel
+  ✓/✗  Headers sécurité HTTP
+
+  ━━ ROUTING
+  ✓/✗  9 routes (8 pages + 404)
+  ✓/✗  0 lien <a href> interne
+
+  ━━ CONTENU
+  ✓/✗  0 placeholder non remplacé
+  ✓/✗  Pages légales complètes
+  ✓/✗  Footer complet
+
+  ━━ BUILD
+  ✓/✗  npm run build — 0 erreur, 0 warning
+
+  ━━ SCORE ESTIMÉ PAGESPEED
+  SEO : X/100
+  Performance bureau : X/100
+  Performance mobile : X/100
+  Accessibilité : X/100
+  Bonnes pratiques : X/100
+
+  ━━ CORRECTIONS PROPOSÉES (priorité haute → basse)
+  Pour chaque ✗ : cause exacte + correction précise.
+
+  ━━ ACTIONS MANUELLES REQUISES
+  Tout ce qui ne peut pas être corrigé automatiquement.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+
+
+PROMPT CLAUDE CODE — 3/3 — LEVEL UP DESIGN & UI
+Renaud Voss Avocats · prestige-legal.vercel.app
+Généré le 03/04/2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Objectif : élever chaque détail visuel et d'interaction
+sans toucher à la palette, aux polices ni au layout global.
+Affiner. Préciser. Rendre chaque micro-détail irréprochable.
+
+RÈGLE ABSOLUE : aucun changement de couleur, de police,
+de layout ou de composant majeur sans me demander.
+Uniquement du polish, de la précision, de la fluidité.
+
+Exécute dans l'ordre. Résumé après chaque étape.
+
+
+━━ ÉTAPE 1 — TYPOGRAPHIE AVANCÉE ━━━━━━━━━━━━━━━━━━━━━━
+
+  Sur tous les titres Playfair Display :
+  · text-rendering: optimizeLegibility
+  · font-feature-settings: "liga" 1, "kern" 1
+  · text-wrap: balance (évite les orphelins)
+
+  Sur le H1 hero :
+  · font-weight: 400 italic (pas bold)
+  · letter-spacing: -0.02em (resserrement élégant)
+
+  Sur les sous-titres DM Sans light :
+  · font-weight: 300
+  · line-height: 1.6
+
+  Sur les labels uppercase :
+  · letter-spacing: 0.18em exact (pas 0.15 ni 0.2)
+  · font-size: 11px exact
+
+  Sur les blocs de prose (texte long) :
+  · max-width: 65ch (lisibilité optimale)
+  · line-height: 1.8
+
+
+━━ ÉTAPE 2 — MICRO-INTERACTIONS ━━━━━━━━━━━━━━━━━━━━━━━
+
+  Entrées en scroll — Intersection Observer natif
+  (pas de librairie externe) :
+
+  · Chaque section : fade-up sobre
+    opacity: 0 → 1
+    transform: translateY(24px) → translateY(0)
+    duration: 500ms
+    easing: cubic-bezier(0.16, 1, 0.3, 1)
+    threshold: 0.15
+
+  · Blocs bento : stagger 80ms entre chaque bloc
+    (délai incrémental sur chaque enfant)
+
+  · Chiffres stats : compteur animé 0 → valeur finale
+    duration: 1200ms ease-out au scroll
+
+  · La ligne verticale signature : apparaît en
+    scaleY(0) → scaleY(1) au chargement de la page,
+    transform-origin: top, duration 800ms
+
+  Hover states précis :
+
+  · Boutons CTA :
+    transition: background 200ms, box-shadow 200ms
+    hover: box-shadow 0 4px 16px rgba(44,74,62,0.15)
+
+  · Blocs bento :
+    transition: border-color 150ms, transform 150ms
+    hover: border-color → #2C4A3E, translateY(-2px)
+
+  · Liens navigation :
+    pseudo-élément ::after — underline tracé gauche→droite
+    scaleX(0) → scaleX(1) au hover, 200ms
+    transform-origin: left
+
+  · Icônes Lucide :
+    transition: transform 150ms
+    hover: rotate(3deg) scale(1.08)
+
+  Accordéon FAQ :
+  · max-height transition 300ms ease (pas height)
+  · ChevronDown rotate(0deg) → rotate(180deg) à l'ouverture
+  · Fond réponse ouverte : légèrement plus sombre +2%
+
+  Formulaire :
+  · border-color → accent #2C4A3E au focus, 150ms
+  · Floating label : translateY(-24px) scale(0.85)
+    au focus ou si champ rempli
+  · Bouton submit : <Loader2 /> spin pendant 1500ms
+    puis "Message envoyé ✓" en vert
+
+
+━━ ÉTAPE 3 — POLISH GLOBAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  CSS global dans index.css ou App.css :
+
+  · Sélection texte élégante :
+    ::selection {
+      background: #2C4A3E;
+      color: #FAFAF7;
+    }
+
+  · Scrollbar fine (desktop webkit) :
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: #E0DBD3;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #8B7355; }
+
+  · Scroll progress bar (2px, haut de page) :
+    Composant React qui calcule scrollY / documentHeight
+    width en % · fond #2C4A3E · position fixed top-0 z-50
+
+  · Smooth scroll global :
+    html { scroll-behavior: smooth; }
+
+  · Overflow mobile :
+    body { overflow-x: hidden; }
+
+  · Curseur cohérent :
+    * { cursor: default; }
+    a, button, [role="button"] { cursor: pointer; }
+
+  · Focus visible accessible :
+    :focus-visible {
+      outline: 2px solid #2C4A3E;
+      outline-offset: 2px;
+    }
+    :focus:not(:focus-visible) { outline: none; }
+
+
+━━ ÉTAPE 4 — NAVIGATION & UX ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  · Page active dans la nav : border-bottom 2px #2C4A3E
+    sur le lien de la route courante (useLocation)
+    Pas de font-weight bold — uniquement la bordure
+
+  · Scroll progress bar intégrée dans le composant nav
+
+  · Chaque section a un id correspondant à son label :
+    id="expertises" id="philosophie" id="temoignages"
+    id="confiance" id="faq" id="contact"
+
+  · Sur mobile (< 768px) :
+    Menu hamburger <Menu /> Lucide
+    Overlay fond #FAFAF7 opacity-95 backdrop-blur-sm
+    Liens centrés, DM Sans 18px
+    Fermeture automatique au clic sur un lien
+    Animation slide-down 200ms
+
+  · Bouton "retour en haut" :
+    Apparaît après 400px de scroll
+    Icône <ArrowUp /> Lucide, fond #2C4A3E, texte #FAFAF7
+    Position fixed bottom-8 right-8
+    Disparaît en haut de page
+
+
+━━ ÉTAPE 5 — RESPONSIVE PRÉCIS ━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Vérifie sur chaque breakpoint (mobile 375px,
+  tablette 768px, desktop 1280px) :
+
+  Hero split :
+  · Desktop : 60/40 gauche/droite
+  · Tablette : 55/45
+  · Mobile : colonne, bloc stats sous le texte
+
+  Bento Grid :
+  · Desktop : grille asymétrique 3 colonnes
+  · Tablette : 2 colonnes, réorganisation des spans
+  · Mobile : 1 colonne, tous les blocs pleine largeur
+
+  Ligne verticale signature :
+  · Desktop et tablette : visible
+  · Mobile (< 640px) : hidden
+
+  Typographie responsive :
+  · H1 hero : 96px desktop → 64px tablette → 48px mobile
+  · H2 sections : 56px desktop → 40px tablette → 32px mobile
+  · Chiffres stats : 80px desktop → 60px mobile
+
+  Navigation :
+  · Desktop : liens horizontaux
+  · Mobile (< 768px) : hamburger
+
+  Formulaire contact :
+  · Desktop : split gauche/droite
+  · Mobile : colonne, infos sous le formulaire
+
+
+━━ ÉTAPE 6 — PERFORMANCE PERÇUE ━━━━━━━━━━━━━━━━━━━━━━━
+
+  · will-change: transform uniquement sur les éléments
+    qui ont une animation active — supprimer will-change
+    sur tout le reste (nuit aux perfs si sur-utilisé)
+
+  · Les images hero (s'il y en a) : fetchpriority="high"
+    Les images hors hero : loading="lazy"
+
+  · Remplace tout setTimeout dans les animations par
+    requestAnimationFrame pour la fluidité
+
+  · Vérifie que les event listeners scroll et resize
+    sont throttlés ou debouncés (max 60fps)
+
+  · Intersection Observer : disconnect() après
+    que l'animation a joué (évite les listeners zombies)
+
+
+━━ BUILD & PUSH ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  npm run build → 0 erreur, 0 warning
+  Vérifie que le bundle n'a pas grossi de plus de 20kb
+  par rapport au build précédent (115kb gzippé).
+
+  git add .
+  git commit -m "feat: design level up — micro-interactions,
+  polish, responsive, typographie avancée"
+  git push origin main
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
