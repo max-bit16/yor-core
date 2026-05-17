@@ -1,0 +1,46 @@
+# YOR SEO Engine — config.yaml
+# Copier dans .yor-seo/ à la racine de chaque projet
+# Remplacer toutes les valeurs entre [crochets]
+
+site:
+  name: "[Nom du client]"
+  domain: "[domaine.fr]"
+  locale: "fr_FR"
+  language: "fr"
+  timezone: "Europe/Paris"
+
+business:
+  type: "[LegalService | Restaurant | AccountingService | PhotographyBusiness]"
+  sector: "[avocat | restaurant | expert-comptable | photographe]"
+  city: "[Ville]"
+  region: "[Région]"
+  address: "[Adresse complète]"
+  phone: "[0X XX XX XX XX]"
+  email: "[contact@domaine.fr]"
+  founded: "[YYYY]"
+
+seo:
+  # H1 validé sur Ubersuggest (volume > 0)
+  primary_keyword: "[mot-clé principal — ex: avocat divorce Rennes]"
+  secondary_keywords:
+    - "[mot-clé 2]"
+    - "[mot-clé 3]"
+    - "[mot-clé 4]"
+  
+  meta_title: "[Mot-clé principal | Nom du client]"
+  meta_description: "[155 caractères max — inclure le mot-clé principal et la ville]"
+  
+  # Open Graph
+  og_image: "/og-cover.jpg"  # 1200x630px
+  og_type: "website"
+
+schema:
+  # Type Schema.org principal
+  type: "[LegalService | Restaurant | AccountingService]"
+  price_range: "[€ | €€ | €€€]"
+  opening_hours: "[Mo-Fr 09:00-18:00]"
+
+pages:
+  # Mapping route → titre
+  "/": "[Titre homepage]"
+  # Ajouter une entrée par route du site

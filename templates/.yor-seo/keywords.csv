@@ -1,0 +1,14 @@
+keyword,volume,difficulty,intent,priority,page,status
+[mot-clé principal],[volume],[difficulté 0-100],[informational|navigational|transactional],[high|medium|low],[/],[todo|done|skip]
+[mot-clé secondaire 1],[volume],[difficulté],[intent],[priority],[/page],[status]
+[mot-clé secondaire 2],[volume],[difficulté],[intent],[priority],[/page],[status]
+[mot-clé longue traîne 1],[volume],[difficulté],[intent],[priority],[/page],[status]
+[mot-clé longue traîne 2],[volume],[difficulté],[intent],[priority],[/page],[status]
+
+# INSTRUCTIONS
+# 1. Valider chaque mot-clé sur Ubersuggest avant de l'ajouter
+# 2. Ne jamais utiliser un mot-clé avec volume = 0
+# 3. Priorité high = utilisé dans H1/H2, medium = H3/contenu, low = meta
+# 4. Intent transactional = pages de service/contact
+# 5. Intent informational = pages blog/publications
+# 6. Supprimer cette section de commentaires avant d'envoyer à Claude Code
